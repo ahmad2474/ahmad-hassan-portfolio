@@ -51,19 +51,6 @@ export function initScrollAnimations() {
     )
   })
 
-  // Section titles — word by word
-  gsap.utils.toArray('.section-title').forEach(el => {
-    const html = el.innerHTML
-    el.innerHTML = html.replace(/(\S+)/g,
-      '<span style="display:inline-block;overflow:hidden;vertical-align:bottom"><span class="w" style="display:inline-block">$1</span></span>'
-    )
-    gsap.fromTo(el.querySelectorAll('.w'),
-      { y: '110%' },
-      { y: '0%', duration: 0.75, stagger: 0.07, ease: 'power3.out',
-        scrollTrigger: { trigger: el, start: 'top 86%', toggleActions: 'play none none none' } }
-    )
-  })
-
   // Stats counter + gold glow
   gsap.utils.toArray('.stat-number[data-target]').forEach(el => {
     const target = parseInt(el.dataset.target)

@@ -7,15 +7,40 @@
 }
 .about-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 80px; align-items: center; }
 .about-photo-col { position: relative; }
+.about-photo-col::before,
+.about-photo-col::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 92%;
+  aspect-ratio: 1;
+  border: 1px solid rgba(201,168,76,.56);
+  border-radius: 10px;
+  transform: translate(-50%,-50%) rotate(0deg);
+  transform-origin: center;
+  z-index: 2;
+  pointer-events: none;
+  box-shadow: 0 0 34px rgba(201,168,76,.08);
+  animation: aboutGoldRingSpin 20s linear infinite;
+}
+.about-photo-col::after {
+  width: 78%;
+  border-color: rgba(201,168,76,.32);
+  border-style: dashed;
+  border-radius: 8px;
+  animation-duration: 30s;
+  animation-direction: reverse;
+}
 
 /* Ring canvas sits on top of photo */
 #about-ring-canvas {
   position: absolute; inset: -40px;
   width: calc(100% + 80px); height: calc(100% + 80px);
-  z-index: 2; pointer-events: none;
+  z-index: 3; pointer-events: none;
 }
 
-.photo-corners { position: absolute; inset: -14px; pointer-events: none; z-index: 3; }
+.photo-corners { position: absolute; inset: -14px; pointer-events: none; z-index: 4; }
 .photo-corners::before,.photo-corners::after { content: ''; position: absolute; width: 70px; height: 70px; opacity: .55; }
 .photo-corners::before { top: 0; left: 0; border-top: 1px solid var(--gold); border-left: 1px solid var(--gold); }
 .photo-corners::after  { bottom: 0; right: 0; border-bottom: 1px solid var(--gold); border-right: 1px solid var(--gold); }
@@ -37,4 +62,7 @@
 .about-body { font-size: 14px; line-height: 1.95; color: var(--ivory-40); margin-bottom: 16px; }
 .about-rule { width: 44px; height: 1px; background: var(--gold); opacity: .45; margin: 32px 0; }
 .about-quote { font-family: var(--font-serif); font-size: 17px; font-style: italic; color: rgba(240,235,224,.28); line-height: 1.75; border-left: 2px solid var(--gold-dim); padding-left: 22px; margin-bottom: 38px; }
+@keyframes aboutGoldRingSpin {
+  to { transform: translate(-50%,-50%) rotate(360deg); }
+}
 @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; gap: 48px; } .about-watermark { display: none; } #about-ring-canvas { display: none; } }
