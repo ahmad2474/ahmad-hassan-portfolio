@@ -1,0 +1,94 @@
+/* ── SERVICES ────────────────────────────────────────────── */
+#services {
+  padding: var(--section-py) 0;
+  position: relative;
+  overflow: hidden;
+}
+.services-ghost-text {
+  position: absolute;
+  left: -10px; top: 40px;
+  font-family: var(--font-serif);
+  font-size: clamp(100px, 14vw, 180px);
+  font-weight: 900;
+  font-style: italic;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.022);
+  pointer-events: none;
+  white-space: nowrap;
+  line-height: 1;
+  user-select: none;
+}
+.services-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-bottom: 72px;
+  align-items: end;
+}
+.services-desc {
+  font-size: 14px;
+  color: var(--ivory-40);
+  line-height: 1.9;
+  padding-bottom: 4px;
+}
+.services-list { display: flex; flex-direction: column; }
+
+.service-item {
+  display: grid;
+  grid-template-columns: 44px 1fr 28px;
+  gap: 26px;
+  align-items: center;
+  padding: 30px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: padding-left 0.3s;
+}
+.service-item:first-child { border-top: 1px solid var(--border); }
+.service-item::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 0;
+  background: var(--red-faint);
+  transition: width 0.45s var(--ease-out);
+}
+.service-item:hover::before { width: 100%; }
+
+.service-num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--red);
+  opacity: 0.55;
+  position: relative;
+}
+.service-body { position: relative; }
+.service-body h3 {
+  font-family: var(--font-serif);
+  font-size: 21px;
+  font-weight: 600;
+  color: var(--ivory);
+  margin-bottom: 6px;
+  transition: color 0.3s;
+}
+.service-item:hover .service-body h3 { color: var(--red); }
+.service-body p {
+  font-size: 13px;
+  color: rgba(237,232,224,0.32);
+  line-height: 1.75;
+}
+.service-arrow {
+  font-size: 18px;
+  color: var(--red);
+  opacity: 0;
+  position: relative;
+  transition: opacity 0.3s, transform 0.3s;
+}
+.service-item:hover .service-arrow { opacity: 1; transform: translateX(4px); }
+
+@media (max-width: 768px) {
+  .services-top { grid-template-columns: 1fr; gap: 20px; }
+  .service-item { grid-template-columns: 32px 1fr; gap: 16px; }
+  .service-arrow { display: none; }
+}

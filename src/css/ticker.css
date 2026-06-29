@@ -1,0 +1,6 @@
+/* ticker.css */
+.ticker-wrap { background: var(--red); padding: 13px 0; overflow: hidden; }
+.ticker-track { display: flex; animation: tickerMove 24s linear infinite; width: max-content; }
+.ticker-item { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.82); padding: 0 36px; white-space: nowrap; display: flex; align-items: center; gap: 36px; }
+.ticker-item::after { content: '✦'; opacity: 0.4; font-size: 7px; }
+@keyframes tickerMove { from { transform: translateX(0); } to { transform: translateX(-50%); } }

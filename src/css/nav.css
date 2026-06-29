@@ -1,0 +1,113 @@
+/* ── NAV ─────────────────────────────────────────────────── */
+#navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px var(--container-pad);
+  transition: padding 0.4s, background 0.4s, backdrop-filter 0.4s;
+}
+#navbar.scrolled {
+  padding: 16px var(--container-pad);
+  background: rgba(5, 5, 5, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ivory);
+}
+.logo-dot { color: var(--red); }
+
+.nav-links {
+  display: flex;
+  gap: 40px;
+}
+.nav-links a {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  opacity: 0.35;
+  transition: opacity 0.3s, color 0.3s;
+}
+.nav-links a:hover { opacity: 1; color: var(--red); }
+
+.nav-cta {
+  opacity: 1 !important;
+  color: var(--red) !important;
+  border: 1px solid var(--red-dim);
+  padding: 10px 22px;
+  transition: background 0.3s !important, color 0.3s !important;
+}
+.nav-cta:hover {
+  background: var(--red) !important;
+  color: #fff !important;
+}
+
+/* ── HAMBURGER ──────────────────────────────────────────── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  padding: 4px;
+  z-index: 10;
+}
+.hamburger span {
+  display: block;
+  width: 24px; height: 1px;
+  background: var(--ivory);
+  transition: transform 0.3s, opacity 0.3s, width 0.3s;
+  transform-origin: center;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(3.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { transform: translateY(-3.5px) rotate(-45deg); }
+
+/* ── MOBILE MENU ────────────────────────────────────────── */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 5, 5, 0.98);
+  z-index: 490;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+.mobile-menu.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.mobile-menu ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+}
+.mobile-menu a {
+  font-family: var(--font-serif);
+  font-size: clamp(32px, 8vw, 52px);
+  font-weight: 700;
+  color: var(--ivory);
+  opacity: 0.7;
+  transition: opacity 0.3s, color 0.3s;
+}
+.mobile-menu a:hover { opacity: 1; color: var(--red); }
+
+/* ── RESPONSIVE ─────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  #navbar { padding: 20px var(--container-pad); }
+  #navbar.scrolled { padding: 14px var(--container-pad); }
+}
