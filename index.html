@@ -1,162 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Ahmad Hassan — Web Architect & Digital Craftsman. Building premium digital experiences that help businesses grow." />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Ahmad Hassan — Web Architect. Building premium digital experiences that dominate."/>
   <title>Ahmad Hassan — Web Architect</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@200;300;400;500&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/src/css/reset.css" />
-  <link rel="stylesheet" href="/src/css/variables.css" />
-  <link rel="stylesheet" href="/src/css/main.css" />
-  <link rel="stylesheet" href="/src/css/nav.css" />
-  <link rel="stylesheet" href="/src/css/hero.css" />
-  <link rel="stylesheet" href="/src/css/ticker.css" />
-  <link rel="stylesheet" href="/src/css/work.css" />
-  <link rel="stylesheet" href="/src/css/about.css" />
-  <link rel="stylesheet" href="/src/css/stats.css" />
-  <link rel="stylesheet" href="/src/css/services.css" />
-  <link rel="stylesheet" href="/src/css/testimonials.css" />
-  <link rel="stylesheet" href="/src/css/cta.css" />
-  <link rel="stylesheet" href="/src/css/footer.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@200;300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/css/reset.css"/>
+  <link rel="stylesheet" href="/src/css/variables.css"/>
+  <link rel="stylesheet" href="/src/css/main.css"/>
+  <link rel="stylesheet" href="/src/css/loader.css"/>
+  <link rel="stylesheet" href="/src/css/nav.css"/>
+  <link rel="stylesheet" href="/src/css/hero.css"/>
+  <link rel="stylesheet" href="/src/css/ticker.css"/>
+  <link rel="stylesheet" href="/src/css/work.css"/>
+  <link rel="stylesheet" href="/src/css/about.css"/>
+  <link rel="stylesheet" href="/src/css/stats.css"/>
+  <link rel="stylesheet" href="/src/css/services.css"/>
+  <link rel="stylesheet" href="/src/css/testimonials.css"/>
+  <link rel="stylesheet" href="/src/css/cta.css"/>
+  <link rel="stylesheet" href="/src/css/footer.css"/>
 </head>
 <body>
 
-  <!-- CURSOR -->
-  <div id="cursor-dot"></div>
-  <div id="cursor-ring"></div>
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo"><span class="loader-a">A</span><span class="loader-h">H</span></div>
+  <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+</div>
 
-  <!-- NAV -->
-  <nav id="navbar">
-    <a href="#" class="logo">Ahmad<span class="logo-dot">.</span>Hassan</a>
-    <ul class="nav-links">
-      <li><a href="#work">Work</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#testimonials">Clients</a></li>
-      <li><a href="https://wa.me/923000000000" class="nav-cta" target="_blank">Let's Talk</a></li>
-    </ul>
-    <button class="hamburger" aria-label="Menu">
-      <span></span><span></span>
-    </button>
-  </nav>
+<!-- CURSOR -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
 
-  <!-- MOBILE MENU -->
-  <div class="mobile-menu" id="mobileMenu">
-    <ul>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#testimonials">Clients</a></li>
-      <li><a href="https://wa.me/923000000000" target="_blank">Let's Talk</a></li>
-    </ul>
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="logo">Ahmad<span class="logo-dot">.</span></a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#testimonials">Clients</a></li>
+  </ul>
+  <a href="https://wa.me/923000000000" class="nav-cta" target="_blank">Let's Talk</a>
+  <button class="hamburger" aria-label="Menu"><span></span><span></span></button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#testimonials">Clients</a></li>
+    <li><a href="https://wa.me/923000000000" target="_blank">Let's Talk</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="orb-canvas"></canvas>
+  <div class="hero-grid-lines"></div>
+
+  <div class="hero-photo-wrap">
+    <img src="/images/36888.jpg" alt="Ahmad Hassan" class="hero-photo"/>
+    <div class="hero-photo-mask"></div>
   </div>
 
-  <!-- HERO -->
-  <section id="hero">
-    <canvas id="orb-canvas"></canvas>
-    <div class="hero-grid-lines"></div>
-
-    <div class="hero-photo-wrap">
-      <!-- REPLACE: put your photo file in /public/images/ and update this src -->
-      <img src="/{src/{js,css},public/images}/36888.jpg" alt="Ahmad Hassan" class="hero-photo" />
-      <div class="hero-photo-mask"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow"><span class="eyebrow-line"></span>Ahmad Hassan</p>
+    <h1 class="hero-name">
+      <span class="name-first">Building Digital</span>
+      <span class="name-second">Products People</span>
+      <span class="name-last">Remember.</span>
+    </h1>
+    <p class="hero-desc">Premium websites crafted with modern technology, thoughtful design, and a relentless focus on performance and user experience.</p>
+    <div class="hero-actions">
+      <a href="https://wa.me/923000000000" class="btn-primary" target="_blank">Let's Talk</a>
     </div>
-
-    <div class="hero-content">
-      <p class="hero-eyebrow">
-        <span class="eyebrow-line"></span>
-        Web Architect &amp; Digital Craftsman
-      </p>
-      <h1 class="hero-name">
-        <span class="name-first">AHMAD</span>
-        <span class="name-last">Hassan</span>
-      </h1>
-      <p class="hero-desc">
-        I don't build websites.<br>
-        I engineer digital empires so powerful,<br>
-        your competitors will wonder what hit them.
-      </p>
-      <div class="hero-actions">
-        <a href="#work" class="btn-primary">View My Work</a>
-        <a href="#about" class="btn-ghost">My Story <span class="arrow">→</span></a>
-      </div>
-    </div>
-
-    <div class="hero-scroll-indicator">
-      <div class="scroll-line"></div>
-      <span>Scroll</span>
-    </div>
-
-    <div class="hero-badge">
-      <span class="badge-dot"></span>
-      Available for projects
-    </div>
-  </section>
-
-  <!-- TICKER -->
-  <div class="ticker-wrap">
-    <div class="ticker-track">
-      <span class="ticker-item">Premium Web Design</span>
-      <span class="ticker-item">WordPress Development</span>
-      <span class="ticker-item">E-commerce Solutions</span>
-      <span class="ticker-item">UI / UX Mastery</span>
-      <span class="ticker-item">Brand Elevation</span>
-      <span class="ticker-item">SEO Dominance</span>
-      <span class="ticker-item">Performance Optimized</span>
-      <!-- duplicated for seamless loop -->
-      <span class="ticker-item">Premium Web Design</span>
-      <span class="ticker-item">WordPress Development</span>
-      <span class="ticker-item">E-commerce Solutions</span>
-      <span class="ticker-item">UI / UX Mastery</span>
-      <span class="ticker-item">Brand Elevation</span>
-      <span class="ticker-item">SEO Dominance</span>
-      <span class="ticker-item">Performance Optimized</span>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="hs-num">7+</span><span class="hs-lbl">Years</span></div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat"><span class="hs-num">40+</span><span class="hs-lbl">Projects</span></div>
     </div>
   </div>
 
-  <!-- WORK -->
-  <section id="work">
-    <div class="container">
-      <div class="section-header">
-        <div>
-          <p class="section-label">Selected Work</p>
-          <h2 class="section-title">Every pixel.<br><em>Obsessed over.</em></h2>
-        </div>
-        <a href="#" class="btn-ghost">All Projects <span class="arrow">→</span></a>
-      </div>
+  <div class="hero-scroll-indicator">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
 
-      <div class="bento-grid">
-        <article class="bento-card bento-large" data-index="0">
-          <!-- REPLACE: /public/images/project-1.jpg -->
-          <img src="/images/project-1.jpg" alt="Noir Dining Group" class="bento-img" />
-          <div class="bento-mock mock-1">
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span class="ticker-item">Premium Web Design</span>
+    <span class="ticker-item">WordPress Development</span>
+    <span class="ticker-item">E-commerce Solutions</span>
+    <span class="ticker-item">UI / UX Mastery</span>
+    <span class="ticker-item">Brand Elevation</span>
+    <span class="ticker-item">SEO Dominance</span>
+    <span class="ticker-item">Performance Optimized</span>
+    <span class="ticker-item">Premium Web Design</span>
+    <span class="ticker-item">WordPress Development</span>
+    <span class="ticker-item">E-commerce Solutions</span>
+    <span class="ticker-item">UI / UX Mastery</span>
+    <span class="ticker-item">Brand Elevation</span>
+    <span class="ticker-item">SEO Dominance</span>
+    <span class="ticker-item">Performance Optimized</span>
+  </div>
+</div>
+
+<!-- WORK -->
+<section id="work">
+  <div class="container">
+    <div class="section-header reveal">
+      <div>
+        <p class="section-label">Selected Work</p>
+        <h2 class="section-title">Every pixel.<br><em>Obsessed over.</em></h2>
+      </div>
+    </div>
+    <div class="work-grid">
+
+      <!-- PROJECT 1 -->
+      <a href="https://scrapinksa.com" target="_blank" class="work-card work-card-large">
+        <div class="work-card-bg" style="background:linear-gradient(145deg,#0e0a04,#1c1208)">
+          <div class="work-card-mock">
             <div class="mock-browser">
               <div class="mock-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
               <div class="mock-screen">
                 <div class="mock-line accent"></div>
-                <div class="mock-img-block tall"></div>
+                <div class="mock-img-block" style="height:100px;background:linear-gradient(135deg,rgba(201,168,76,.15),rgba(201,168,76,.04))"></div>
                 <div class="mock-line med"></div>
                 <div class="mock-line short"></div>
                 <div class="mock-btn"></div>
               </div>
             </div>
           </div>
-          <div class="bento-label">
-            <p class="bento-name">Noir Dining Group</p>
-            <p class="bento-type">WordPress · 2024</p>
-          </div>
-          <div class="bento-overlay">
-            <h3>Noir Dining Group</h3>
-            <p>Michelin-starred restaurant. Online reservations up 280% post-launch.</p>
-            <a href="#" class="bento-link">View Case Study →</a>
-          </div>
-        </article>
+        </div>
+        <div class="work-card-content">
+          <p class="work-card-tag">WordPress · SEO · Makkah, KSA</p>
+          <h3 class="work-card-title">ScrapInKSA</h3>
+          <p class="work-card-desc">The holy city's most trusted metal scrap platform. A bilingual Arabic-English powerhouse built for industrial clients across Mecca — seamlessly connecting scrap sellers with instant quotes, real-time pickup scheduling and market-rate pricing that outperforms every competitor in the region.</p>
+          <span class="work-card-link">Visit Live Site →</span>
+        </div>
+      </a>
 
-        <article class="bento-card" data-index="1">
-          <div class="bento-mock mock-2">
+      <!-- PROJECT 2 -->
+      <a href="https://freejunkremovalservices.com" target="_blank" class="work-card">
+        <div class="work-card-bg" style="background:linear-gradient(145deg,#080e09,#0d1a0e)">
+          <div class="work-card-mock">
             <div class="mock-browser">
               <div class="mock-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
               <div class="mock-screen">
@@ -166,283 +162,215 @@
               </div>
             </div>
           </div>
-          <div class="bento-label">
-            <p class="bento-name">Vertex Architecture</p>
-            <p class="bento-type">Web Design · 2024</p>
-          </div>
-          <div class="bento-overlay">
-            <h3>Vertex Architecture</h3>
-            <p>Minimalist portfolio. Leads grew 3x in 60 days.</p>
-            <a href="#" class="bento-link">View Case Study →</a>
-          </div>
-        </article>
+        </div>
+        <div class="work-card-content">
+          <p class="work-card-tag">WordPress · Lead Gen · Dubai, UAE</p>
+          <h3 class="work-card-title">Free Junk Removal</h3>
+          <p class="work-card-desc">Dubai's largest free junk removal service, engineered for maximum call volume. A conversion-first platform serving all 7 Emirates with zero-friction UX that turns visitors into booked pickups in seconds.</p>
+          <span class="work-card-link">Visit Live Site →</span>
+        </div>
+      </a>
 
-        <article class="bento-card" data-index="2">
-          <div class="bento-mock mock-3">
+      <!-- PROJECT 3 -->
+      <a href="https://oldfurniturebuyerdubai.com" target="_blank" class="work-card">
+        <div class="work-card-bg" style="background:linear-gradient(145deg,#0e0a08,#1c1408)">
+          <div class="work-card-mock">
             <div class="mock-browser">
               <div class="mock-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
               <div class="mock-screen">
                 <div class="mock-line accent"></div>
                 <div class="mock-line short"></div>
-                <div class="mock-img-block gold"></div>
+                <div class="mock-img-block" style="background:linear-gradient(135deg,rgba(201,168,76,.1),rgba(201,168,76,.03))"></div>
               </div>
             </div>
           </div>
-          <div class="bento-label">
-            <p class="bento-name">Élance Fashion</p>
-            <p class="bento-type">E-commerce · 2024</p>
-          </div>
-          <div class="bento-overlay">
-            <h3>Élance Fashion</h3>
-            <p>Luxury e-commerce. Revenue doubled in first quarter.</p>
-            <a href="#" class="bento-link">View Case Study →</a>
-          </div>
-        </article>
+        </div>
+        <div class="work-card-content">
+          <p class="work-card-tag">WordPress · E-commerce · Dubai, UAE</p>
+          <h3 class="work-card-title">Old Furniture Buyer Dubai</h3>
+          <p class="work-card-desc">A trusted used furniture marketplace serving Dubai and all UAE Emirates. Purpose-built for instant buyer-seller connections with competitive pricing, door-step pickup and a reputation that keeps clients coming back.</p>
+          <span class="work-card-link">Visit Live Site →</span>
+        </div>
+      </a>
 
-        <article class="bento-card" data-index="3">
-          <div class="bento-mock mock-4">
-            <div class="mock-browser sm">
-              <div class="mock-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-              <div class="mock-screen"><div class="mock-line accent"></div><div class="mock-line med"></div></div>
-            </div>
-          </div>
-          <div class="bento-label">
-            <p class="bento-name">Apex SaaS</p>
-            <p class="bento-type">WordPress · 2024</p>
-          </div>
-          <div class="bento-overlay">
-            <h3>Apex SaaS</h3>
-            <p>SaaS landing. Trial sign-ups up 190%.</p>
-            <a href="#" class="bento-link">View →</a>
-          </div>
-        </article>
+    </div>
+  </div>
+</section>
 
-        <article class="bento-card" data-index="4">
-          <div class="bento-mock mock-5">
-            <div class="mock-browser sm">
-              <div class="mock-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-              <div class="mock-screen"><div class="mock-line accent"></div><div class="mock-line short"></div></div>
-            </div>
-          </div>
-          <div class="bento-label">
-            <p class="bento-name">Crown Properties</p>
-            <p class="bento-type">Real Estate · 2024</p>
-          </div>
-          <div class="bento-overlay">
-            <h3>Crown Properties</h3>
-            <p>Ultra-premium real estate. Inquiries tripled in 30 days.</p>
-            <a href="#" class="bento-link">View →</a>
-          </div>
-        </article>
-
-        <article class="bento-card" data-index="5">
-          <div class="bento-mock mock-6">
-            <div class="mock-browser sm">
-              <div class="mock-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-              <div class="mock-screen"><div class="mock-line accent"></div><div class="mock-line med"></div></div>
-            </div>
-          </div>
-          <div class="bento-label">
-            <p class="bento-name">Lumina Clinic</p>
-            <p class="bento-type">Health · 2024</p>
-          </div>
-          <div class="bento-overlay">
-            <h3>Lumina Clinic</h3>
-            <p>Medical aesthetics. Bookings up 220% in 45 days.</p>
-            <a href="#" class="bento-link">View →</a>
-          </div>
-        </article>
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-photo-col">
+        <div class="photo-corners"></div>
+        <canvas id="about-ring-canvas"></canvas>
+        <div class="photo-frame">
+          <img src="/images/60901.jpg" alt="Ahmad Hassan"/>
+        </div>
+        <span class="about-watermark">7+</span>
+      </div>
+      <div class="about-text-col">
+        <p class="section-label">About Me</p>
+        <h2 class="about-headline">The web designer your competitors<br><em>hope you never find.</em></h2>
+        <p class="about-body">I'm Ahmad Hassan, a web architect who believes your website is either your greatest salesman or your biggest liability. There is no middle ground. Since 2018 I've helped ambitious brands across Saudi Arabia, UAE and beyond go from forgettable to unforgettable.</p>
+        <p class="about-body">I work with a select few clients at a time. Not because I have to, because exceptional work demands obsession, and obsession can't be spread thin. When you hire me, you don't get a template. You get a weapon.</p>
+        <div class="about-rule"></div>
+        <blockquote class="about-quote">"Most designers build websites. I build the last website your business will ever need to apologize for."</blockquote>
+        <a href="https://wa.me/923000000000" class="btn-primary" target="_blank">Start a Conversation on WhatsApp →</a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-photo-col">
-          <div class="photo-corners"></div>
-          <div class="photo-frame">
-            <!-- REPLACE: /public/images/about-photo.jpg -->
-            <img src="/{src/{js,css},public/images}/hero.jpg" alt="Ahmad Hassan" />
-          </div>
-          <span class="about-watermark">5+</span>
-        </div>
-        <div class="about-text-col">
-          <p class="section-label">About Me</p>
-          <h2 class="about-headline">
-            The web designer your competitors
-            <em>hope you never find.</em>
-          </h2>
-          <p class="about-body">I'm Ahmad Hassan — a web architect who believes your website is either your greatest salesman or your biggest liability. There is no middle ground. For 5+ years I've helped ambitious brands go from forgettable to unforgettable.</p>
-          <p class="about-body">I work with a select few clients at a time. Not because I have to — because exceptional work demands obsession, and obsession can't be spread thin. When you hire me, you don't get a template. You get a weapon.</p>
-          <div class="about-rule"></div>
-          <blockquote class="about-quote">
-            "Most designers build websites. I build the last website your business will ever need to apologize for."
-          </blockquote>
-          <a href="https://wa.me/923000000000" class="btn-primary" target="_blank">Start a Conversation →</a>
-        </div>
+<!-- STATS -->
+<section id="stats">
+  <div class="container">
+    <div class="stats-row">
+      <div class="stat-item">
+        <p class="stat-number" data-target="7" data-suffix="+">0+</p>
+        <p class="stat-label">Years of Excellence</p>
+      </div>
+      <div class="stat-item">
+        <p class="stat-number" data-target="40" data-suffix="+">0+</p>
+        <p class="stat-label">Projects Completed</p>
+      </div>
+      <div class="stat-item">
+        <p class="stat-number" data-target="100" data-suffix="%">0%</p>
+        <p class="stat-label">Client Satisfaction</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- STATS -->
-  <section id="stats">
-    <div class="container">
-      <div class="stats-row">
-        <div class="stat-item">
-          <p class="stat-number" data-target="5" data-suffix="+">0</p>
-          <p class="stat-label">Years of Excellence</p>
+<!-- SERVICES -->
+<section id="services">
+  <span class="services-ghost-text" aria-hidden="true">SERVICES</span>
+  <div class="container">
+    <div class="services-top reveal">
+      <div>
+        <p class="section-label">What I Do</p>
+        <h2 class="section-title">Precision.<br><em>At every level.</em></h2>
+      </div>
+      <p class="services-desc">From blank canvas to revenue machine, every detail handled with the obsession that separates truly great digital experiences from everything else.</p>
+    </div>
+    <ul class="services-list">
+      <li class="service-item">
+        <span class="service-num">01</span>
+        <div class="service-body">
+          <h3>WordPress Development</h3>
+          <p>Custom builds for performance, security and scale. No page builders, hand-crafted code that loads in under a second.</p>
         </div>
-        <div class="stat-item">
-          <p class="stat-number" data-target="50" data-suffix="+">0</p>
-          <p class="stat-label">Websites Delivered</p>
+        <span class="service-arrow">→</span>
+      </li>
+      <li class="service-item">
+        <span class="service-num">02</span>
+        <div class="service-body">
+          <h3>E-commerce Solutions</h3>
+          <p>WooCommerce stores built around one goal: revenue. Every decision is conversion-driven.</p>
         </div>
-        <div class="stat-item">
-          <p class="stat-number" data-target="15" data-suffix="+">0</p>
-          <p class="stat-label">Countries Served</p>
+        <span class="service-arrow">→</span>
+      </li>
+      <li class="service-item">
+        <span class="service-num">03</span>
+        <div class="service-body">
+          <h3>UI / UX Design</h3>
+          <p>Interfaces so intuitive, users don't notice the design. They just convert.</p>
         </div>
-        <div class="stat-item">
-          <p class="stat-number" data-target="100" data-suffix="%">0</p>
-          <p class="stat-label">Client Satisfaction</p>
+        <span class="service-arrow">→</span>
+      </li>
+      <li class="service-item">
+        <span class="service-num">04</span>
+        <div class="service-body">
+          <h3>Performance &amp; SEO</h3>
+          <p>Diagnose, rebuild and supercharge your site's speed, core web vitals and search rankings.</p>
         </div>
+        <span class="service-arrow">→</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="testi-bg-photo" aria-hidden="true">
+    <img src="/images/40159.jpg" alt=""/>
+  </div>
+  <div class="container">
+    <div class="section-header reveal">
+      <div>
+        <p class="section-label">Kind Words</p>
+        <h2 class="section-title">Clients who<br><em>trusted the vision.</em></h2>
       </div>
     </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section id="services">
-    <span class="services-ghost-text" aria-hidden="true">SERVICES</span>
-    <div class="container">
-      <div class="services-top">
-        <div>
-          <p class="section-label">What I Do</p>
-          <h2 class="section-title">Precision.<br><em>At every level.</em></h2>
-        </div>
-        <p class="services-desc">From blank canvas to revenue machine — every detail handled with the obsession that separates truly great digital experiences from everything else.</p>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="quote-mark">❝</div>
+        <p class="testi-text">Ahmad doesn't build websites, he builds business assets. Revenue grew 40% in the first month. The attention felt like we were his only client.</p>
+        <div class="testi-rule"></div>
+        <p class="testi-name">Daniel Roberts</p>
+        <p class="testi-role">Founder, Noir Dining Group</p>
       </div>
-      <ul class="services-list">
-        <li class="service-item">
-          <span class="service-num">01</span>
-          <div class="service-body">
-            <h3>WordPress Development</h3>
-            <p>Custom builds for performance, security and scale. No page builders — hand-crafted code that loads in under a second.</p>
-          </div>
-          <span class="service-arrow">→</span>
-        </li>
-        <li class="service-item">
-          <span class="service-num">02</span>
-          <div class="service-body">
-            <h3>E-commerce Solutions</h3>
-            <p>WooCommerce stores built around one goal: revenue. Every decision is conversion-driven.</p>
-          </div>
-          <span class="service-arrow">→</span>
-        </li>
-        <li class="service-item">
-          <span class="service-num">03</span>
-          <div class="service-body">
-            <h3>UI / UX Design</h3>
-            <p>Interfaces so intuitive, users don't notice the design — they just convert.</p>
-          </div>
-          <span class="service-arrow">→</span>
-        </li>
-        <li class="service-item">
-          <span class="service-num">04</span>
-          <div class="service-body">
-            <h3>Performance &amp; SEO</h3>
-            <p>Diagnose, rebuild and supercharge your site's speed, core web vitals and search rankings.</p>
-          </div>
-          <span class="service-arrow">→</span>
-        </li>
+      <div class="testi-card">
+        <div class="quote-mark">❝</div>
+        <p class="testi-text">He challenged our brief, pushed our brand further, and delivered something we never imagined possible. Unlike any developer we've worked with.</p>
+        <div class="testi-rule"></div>
+        <p class="testi-name">Sophia Malik</p>
+        <p class="testi-role">CEO, Élance Fashion</p>
+      </div>
+      <div class="testi-card">
+        <div class="quote-mark">❝</div>
+        <p class="testi-text">Our site went from embarrassing to industry-leading. We now rank #1 for every keyword that matters. I refer Ahmad to everyone I respect.</p>
+        <div class="testi-rule"></div>
+        <p class="testi-name">James Carter</p>
+        <p class="testi-role">Director, Crown Properties</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-bg">
+    <img src="/images/40159.jpg" alt=""/>
+    <div class="cta-bg-overlay"></div>
+  </div>
+  <div class="container">
+    <div class="cta-content">
+      <p class="section-label">Let's Build Together</p>
+      <h2 class="cta-headline">
+        <span class="cta-line-1">Let's create</span>
+        <span class="cta-line-2">something legendary.</span>
+      </h2>
+      <p class="cta-sub">You've seen the work. You know the quality.</p>
+      <p class="cta-scarcity">Are you ready to be next?</p>
+      <div class="cta-actions">
+        <a href="https://wa.me/923000000000" class="btn-primary" target="_blank">Message on WhatsApp →</a>
+        <a href="mailto:hello@ahmadhassan.com" class="btn-ghost">hello@ahmadhassan.com <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-row">
+      <div class="footer-logo">Ahmad<span>.</span>Hassan</div>
+      <ul class="footer-links">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#cta">Contact</a></li>
       </ul>
+      <p class="footer-copy">© 2025 Ahmad Hassan. All rights reserved.</p>
     </div>
-  </section>
+  </div>
+</footer>
 
-  <!-- TESTIMONIALS -->
-  <section id="testimonials">
-    <div class="testi-bg-photo" aria-hidden="true">
-      <!-- REPLACE: /public/images/testi-bg.jpg -->
-      <img src="/{src/{js,css},public/images}/40159.jpg" alt="" />
-    </div>
-    <div class="container">
-      <div class="section-header">
-        <div>
-          <p class="section-label">Kind Words</p>
-          <h2 class="section-title">Clients who<br><em>trusted the vision.</em></h2>
-        </div>
-        <a href="#" class="btn-ghost">All Reviews <span class="arrow">→</span></a>
-      </div>
-      <div class="testi-grid">
-        <div class="testi-card">
-          <div class="quote-mark">❝</div>
-          <p class="testi-text">Ahmad doesn't build websites — he builds business assets. Revenue grew 40% in the first month. The attention felt like we were his only client.</p>
-          <div class="testi-rule"></div>
-          <p class="testi-name">Daniel Roberts</p>
-          <p class="testi-role">Founder, Noir Dining Group</p>
-        </div>
-        <div class="testi-card">
-          <div class="quote-mark">❝</div>
-          <p class="testi-text">He challenged our brief, pushed our brand further, and delivered something we never imagined possible. Unlike any developer we've worked with.</p>
-          <div class="testi-rule"></div>
-          <p class="testi-name">Sophia Malik</p>
-          <p class="testi-role">CEO, Élance Fashion</p>
-        </div>
-        <div class="testi-card">
-          <div class="quote-mark">❝</div>
-          <p class="testi-text">Our site went from embarrassing to industry-leading. We now rank #1 for every keyword that matters. I refer Ahmad to everyone I respect.</p>
-          <div class="testi-rule"></div>
-          <p class="testi-name">James Carter</p>
-          <p class="testi-role">Director, Crown Properties</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<a href="https://wa.me/923000000000" class="wa-fab" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
 
-  <!-- CTA -->
-  <section id="cta">
-    <div class="cta-bg">
-      <!-- REPLACE: /public/images/cta-bg.jpg -->
-      <img src="/images/cta-bg.jpg" alt="" />
-      <div class="cta-bg-overlay"></div>
-    </div>
-    <div class="container">
-      <div class="cta-content">
-        <p class="section-label">Let's Build Together</p>
-        <h2 class="cta-headline">
-          <span class="cta-line-1">Let's create</span>
-          <span class="cta-line-2">something legendary.</span>
-        </h2>
-        <p class="cta-sub">You've seen the work. You know the quality.</p>
-        <p class="cta-scarcity">— Are you ready to be next? —</p>
-        <div class="cta-actions">
-          <a href="https://wa.me/923000000000" class="btn-primary" target="_blank">Message on WhatsApp →</a>
-          <a href="mailto:hello@ahmadhassan.com" class="btn-ghost">hello@ahmadhassan.com <span class="arrow">→</span></a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer id="footer">
-    <div class="container">
-      <div class="footer-row">
-        <div class="footer-logo">Ahmad<span>.</span>Hassan</div>
-        <ul class="footer-links">
-          <li><a href="#work">Work</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#cta">Contact</a></li>
-        </ul>
-        <p class="footer-copy">© 2025 Ahmad Hassan. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- WHATSAPP FAB -->
-  <a href="https://wa.me/923000000000" class="wa-fab" target="_blank" rel="noopener" aria-label="WhatsApp">
-    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-  </a>
-
-  <script type="module" src="/src/js/main.js"></script>
+<script type="module" src="/src/js/main.js"></script>
 </body>
 </html>

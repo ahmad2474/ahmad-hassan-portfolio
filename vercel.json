@@ -1,6 +1,9 @@
 {
-  "buildCommand": "node node_modules/vite/bin/vite.js build",
+  "buildCommand": "npx vite build",
   "outputDirectory": "dist",
   "installCommand": "npm install",
-  "framework": "vite"
+  "framework": "vite",
+  "engines": {
+    "node": "20.x"
+  }
 }
