@@ -13,31 +13,34 @@ export function initAnimations() {
 }
 
 function playHeroTimeline() {
-  // Set initial states
   gsap.set(['.hero-eyebrow','.name-first','.name-second','.name-last','.hero-desc','.hero-actions','.hero-scroll-indicator'], { opacity: 0, y: 30 })
   gsap.set('.hero-photo-wrap', { opacity: 0, x: 60 })
   gsap.set('#orb-canvas', { opacity: 0 })
 
   const tl = gsap.timeline({ defaults: { ease: 'power4.out' } })
-
-  // Photo slides in from right first
   tl.to('.hero-photo-wrap', { opacity: 1, x: 0, duration: 1.2, ease: 'power4.out' })
-
-  // Eyebrow
   tl.to('.hero-eyebrow', { opacity: 1, y: 0, duration: 0.7 }, '-=0.8')
-
-  // Headline lines stagger — first two from left, last (italic gold) from right
   tl.to('.name-first', { opacity: 1, y: 0, duration: 0.9 }, '-=0.5')
   tl.to('.name-second', { opacity: 1, y: 0, duration: 0.9 }, '-=0.7')
   tl.to('.name-last', { opacity: 1, y: 0, duration: 0.9 }, '-=0.7')
-
-  // Desc + CTA
   tl.to('.hero-desc',    { opacity: 1, y: 0, duration: 0.7 }, '-=0.4')
   tl.to('.hero-actions', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
   tl.to(['.hero-scroll-indicator'], { opacity: 1, y: 0, duration: 0.6 }, '-=0.1')
-
-  // Canvas
   tl.to('#orb-canvas', { opacity: 1, duration: 1.5 }, '-=1.2')
+}
+
+// ── Split text into word spans ONCE, return the word elements ──
+function splitWordsOnce(el) {
+  // guard — never re-split an element that's already split
+  if (el.dataset.split === 'true') {
+    return el.querySelectorAll('.w')
+  }
+  const html = el.innerHTML
+  el.innerHTML = html.replace(/(\S+)/g,
+    '<span style="display:inline-block;overflow:hidden;vertical-align:bottom"><span class="w" style="display:inline-block">$1</span></span>'
+  )
+  el.dataset.split = 'true'
+  return el.querySelectorAll('.w')
 }
 
 export function initScrollAnimations() {
@@ -50,13 +53,10 @@ export function initScrollAnimations() {
     )
   })
 
-  // Section titles — word by word
+  // Section titles — word by word, split ONCE on page load (not on every scroll trigger)
   gsap.utils.toArray('.section-title').forEach(el => {
-    const html = el.innerHTML
-    el.innerHTML = html.replace(/(\S+)/g,
-      '<span style="display:inline-block;overflow:hidden;vertical-align:bottom"><span class="w" style="display:inline-block">$1</span></span>'
-    )
-    gsap.fromTo(el.querySelectorAll('.w'),
+    const words = splitWordsOnce(el)
+    gsap.fromTo(words,
       { y: '110%' },
       { y: '0%', duration: 0.75, stagger: 0.07, ease: 'power3.out',
         scrollTrigger: { trigger: el, start: 'top 86%', toggleActions: 'play none none none' } }
