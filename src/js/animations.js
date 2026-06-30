@@ -14,7 +14,7 @@ export function initAnimations() {
 
 function playHeroTimeline() {
   // Set initial states
-  gsap.set(['.hero-eyebrow','.name-first','.name-second','.name-last','.hero-desc','.hero-actions','.hero-stats','.hero-scroll-indicator'], { opacity: 0, y: 30 })
+  gsap.set(['.hero-eyebrow','.name-first','.name-second','.name-last','.hero-desc','.hero-actions','.hero-scroll-indicator'], { opacity: 0, y: 30 })
   gsap.set('.hero-photo-wrap', { opacity: 0, x: 60 })
   gsap.set('#orb-canvas', { opacity: 0 })
 
@@ -34,7 +34,6 @@ function playHeroTimeline() {
   // Desc + CTA
   tl.to('.hero-desc',    { opacity: 1, y: 0, duration: 0.7 }, '-=0.4')
   tl.to('.hero-actions', { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
-  tl.to('.hero-stats',   { opacity: 1, y: 0, duration: 0.6 }, '-=0.2')
   tl.to(['.hero-scroll-indicator'], { opacity: 1, y: 0, duration: 0.6 }, '-=0.1')
 
   // Canvas
@@ -48,6 +47,19 @@ export function initScrollAnimations() {
       { y: 60, opacity: 0 },
       { y: 0, opacity: 1, duration: 0.85, delay: i * 0.1, ease: 'power3.out',
         scrollTrigger: { trigger: card, start: 'top 90%', toggleActions: 'play none none none' } }
+    )
+  })
+
+  // Section titles — word by word
+  gsap.utils.toArray('.section-title').forEach(el => {
+    const html = el.innerHTML
+    el.innerHTML = html.replace(/(\S+)/g,
+      '<span style="display:inline-block;overflow:hidden;vertical-align:bottom"><span class="w" style="display:inline-block">$1</span></span>'
+    )
+    gsap.fromTo(el.querySelectorAll('.w'),
+      { y: '110%' },
+      { y: '0%', duration: 0.75, stagger: 0.07, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 86%', toggleActions: 'play none none none' } }
     )
   })
 

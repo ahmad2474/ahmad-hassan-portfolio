@@ -22,8 +22,6 @@
 /* LEFT — content */
 .hero-content {
   position: relative; z-index: 10;
-  grid-column: 1;
-  grid-row: 1;
   padding: 0 var(--container-pad);
   display: flex; flex-direction: column;
   gap: 0;
@@ -62,91 +60,24 @@
   color: var(--ivory-40); max-width: 420px;
   margin-bottom: 36px; opacity: 0;
 }
-.hero-actions { margin-bottom: 40px; opacity: 0; }
+.hero-actions { margin-bottom: 0; opacity: 0; }
 
-/* Inline stats below CTA */
-.hero-stats {
-  display: flex; align-items: center; gap: 24px;
-  opacity: 0;
-}
-.hero-stat { display: flex; flex-direction: column; gap: 2px; }
-.hs-num {
-  font-family: var(--font-serif);
-  font-size: 28px; font-weight: 900;
-  color: var(--gold); line-height: 1;
-}
-.hs-lbl {
-  font-family: var(--font-mono);
-  font-size: 9px; letter-spacing: .3em;
-  text-transform: uppercase; color: var(--muted);
-}
-.hero-stat-divider {
-  width: 1px; height: 36px;
-  background: var(--border-gold);
-}
-
-/* RIGHT — photo */
+/* RIGHT — photo (desktop: transparent PNG, rings visible through it) */
 .hero-photo-wrap {
   position: relative; z-index: 3;
-  grid-column: 2;
-  grid-row: 1;
-  display: flex; align-items: center; justify-content: flex-end;
-  padding: 60px 64px 60px 20px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 40px 64px 40px 20px;
   height: 100vh;
   opacity: 0;
 }
-.hero-photo-wrap::before,
-.hero-photo-wrap::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  right: calc(64px + min(21vw, 210px));
-  width: min(34vw, 500px);
-  min-width: 300px;
-  aspect-ratio: 1;
-  border: 1px solid rgba(201,168,76,0.58);
-  border-radius: 10px;
-  transform: translate(50%,-50%) rotate(0deg);
-  transform-origin: center;
-  pointer-events: none;
-  z-index: 1;
-  box-shadow: 0 0 34px rgba(201,168,76,0.08);
-  animation: heroGoldRingSpin 18s linear infinite;
-}
-.hero-photo-wrap::after {
-  width: min(29vw, 430px);
-  min-width: 250px;
-  border-color: rgba(201,168,76,0.34);
-  border-style: dashed;
-  border-radius: 8px;
-  animation-duration: 26s;
-  animation-direction: reverse;
-}
 .hero-photo {
-  position: relative;
-  z-index: 2;
-  width: 100%; max-width: 420px; height: 88vh; max-height: 680px;
-  object-fit: cover; object-position: center top;
-  border-radius: 16px;
-  filter: grayscale(6%) contrast(1.06) brightness(0.88);
+  width: 100%; max-width: 460px; height: auto; max-height: 78vh;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: contrast(1.05) brightness(0.96);
   display: block;
 }
-.hero-photo-mask {
-  position: absolute;
-  top: 50%;
-  right: 64px;
-  width: min(100% - 84px, 420px);
-  height: 88vh;
-  max-height: 680px;
-  transform: translateY(-50%);
-  z-index: 3;
-  background: radial-gradient(ellipse at center, transparent 40%, rgba(5,5,5,0.35) 100%);
-  border-radius: 16px;
-  pointer-events: none;
-}
-@keyframes heroGoldRingSpin {
-  to { transform: translate(50%,-50%) rotate(360deg); }
-}
+.hero-photo-mask { display: none; }
 
 /* Scroll indicator */
 .hero-scroll-indicator {
@@ -165,31 +96,69 @@
 @keyframes scrollPulse { 0%,100%{opacity:.3;}50%{opacity:1;} }
 @keyframes heroFU { from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:none;} }
 
+/* ════════════════════════════════════════════════════
+   MOBILE — photo becomes a BACKGROUND layer behind text
+   ════════════════════════════════════════════════════ */
 @media (max-width: 900px) {
-  #hero { grid-template-columns: 1fr; padding-top: 100px; min-height: auto; }
-  .hero-content, .hero-photo-wrap { grid-column: 1; grid-row: auto; }
-  .hero-photo-wrap { height: 55vw; max-height: 400px; padding: 20px var(--container-pad); justify-content: center; }
-  .hero-photo-wrap::before,
-  .hero-photo-wrap::after {
-    left: 50%;
-    right: auto;
-    transform: translate(-50%,-50%) rotate(0deg);
-    animation-name: heroGoldRingSpinMobile;
+  #hero {
+    grid-template-columns: 1fr;
+    padding-top: 90px;
+    min-height: 100vh;
+    display: block;
+    position: relative;
   }
-  .hero-photo-wrap::before { width: min(78vw, 360px); min-width: 230px; }
-  .hero-photo-wrap::after { width: min(66vw, 310px); min-width: 200px; }
-  .hero-photo { max-width: 100%; height: 100%; border-radius: 12px; }
-  .hero-photo-mask {
-    left: var(--container-pad);
-    right: var(--container-pad);
-    width: auto;
+
+  /* Photo sits absolute, behind content, anchored bottom-right */
+  .hero-photo-wrap {
+    position: absolute;
+    inset: 0;
     height: 100%;
-    max-height: none;
+    padding: 0;
+    z-index: 1;
+    display: block;
+    justify-content: unset;
+    align-items: unset;
+    opacity: 0;
   }
-  .hero-content { padding-top: 0; }
+  .hero-photo {
+    position: absolute;
+    right: -8%;
+    bottom: 0;
+    width: 78%;
+    max-width: 420px;
+    height: 92%;
+    max-height: none;
+    object-fit: contain;
+    object-position: bottom right;
+    opacity: 0.55;
+  }
+
+  /* Dark gradient overlay so text stays readable on top of photo */
+  .hero-photo-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(5,5,5,0.55) 0%, rgba(5,5,5,0.15) 35%, rgba(5,5,5,0.55) 70%, var(--void) 100%),
+      linear-gradient(90deg, var(--void) 0%, rgba(5,5,5,0.2) 35%, transparent 70%);
+    z-index: 2;
+  }
+
+  /* Content sits above photo + overlay */
+  .hero-content {
+    position: relative;
+    z-index: 5;
+    padding: 24px var(--container-pad) 60px;
+  }
+
+  .hero-eyebrow { margin-bottom: 18px; }
+  .hero-name { margin-bottom: 20px; }
+  .hero-desc { margin-bottom: 28px; max-width: 100%; }
+  .name-first, .name-second, .name-last { font-size: clamp(36px,9vw,58px); }
+
   .hero-scroll-indicator { display: none; }
-  .name-first, .name-second, .name-last { font-size: clamp(36px,8vw,64px); }
 }
-@keyframes heroGoldRingSpinMobile {
-  to { transform: translate(-50%,-50%) rotate(360deg); }
+
+@media (max-width: 480px) {
+  .hero-photo { width: 88%; right: -4%; opacity: 0.45; }
 }
