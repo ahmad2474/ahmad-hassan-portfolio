@@ -103,15 +103,24 @@
   #hero {
     grid-template-columns: 1fr;
     padding-top: 90px;
+    /* Let the section grow to fit its content naturally instead of
+       locking to 100vh — that hard crop was forcing the headline,
+       description and CTA to compress/center inside a fixed box,
+       which is why everything read as cramped against the photo. */
     min-height: 100vh;
+    height: auto;
     display: block;
     position: relative;
+    overflow: hidden;
+    padding-bottom: 0;
   }
 
-  /* Photo sits absolute, behind content, anchored bottom-right */
+  /* Photo sits absolute, behind content, bleeding down to the actual
+     bottom of the (now naturally-tall) hero section */
   .hero-photo-wrap {
     position: absolute;
     inset: 0;
+    width: 100%;
     height: 100%;
     padding: 0;
     z-index: 1;
@@ -122,12 +131,17 @@
   }
   .hero-photo {
     position: absolute;
-    right: -8%;
+    right: -4%;
     bottom: 0;
-    width: 78%;
-    max-width: 420px;
-    height: 92%;
-    max-height: none;
+    top: auto;
+    width: 84%;
+    max-width: 440px;
+    /* Bleed from roughly where the CTA ends all the way to the
+       section's true bottom edge — no artificial height cap, so
+       there's no dead gap between chin/shoulders and the floor */
+    height: 56%;
+    min-height: 380px;
+    max-height: 620px;
     object-fit: contain;
     object-position: bottom right;
     opacity: 0.55;
@@ -139,16 +153,18 @@
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(180deg, rgba(5,5,5,0.55) 0%, rgba(5,5,5,0.15) 35%, rgba(5,5,5,0.55) 70%, var(--void) 100%),
-      linear-gradient(90deg, var(--void) 0%, rgba(5,5,5,0.2) 35%, transparent 70%);
+      linear-gradient(180deg, rgba(5,5,5,0.7) 0%, rgba(5,5,5,0.25) 32%, rgba(5,5,5,0.5) 60%, var(--void) 100%),
+      linear-gradient(90deg, var(--void) 0%, rgba(5,5,5,0.3) 35%, transparent 70%);
     z-index: 2;
   }
 
-  /* Content sits above photo + overlay */
+  /* Content flows naturally top-to-bottom — no forced vertical
+     centering or scroll trap inside a fixed-height box */
   .hero-content {
     position: relative;
     z-index: 5;
-    padding: 24px var(--container-pad) 60px;
+    padding: 24px var(--container-pad) 70px;
+    display: block;
   }
 
   .hero-eyebrow { margin-bottom: 18px; }
@@ -160,5 +176,5 @@
 }
 
 @media (max-width: 480px) {
-  .hero-photo { width: 88%; right: -4%; opacity: 0.45; }
+  .hero-photo { width: 90%; right: -2%; opacity: 0.5; height: 50%; min-height: 340px; }
 }

@@ -29,18 +29,29 @@ function playHeroTimeline() {
   tl.to('#orb-canvas', { opacity: 1, duration: 1.5 }, '-=1.2')
 }
 
-// ── Split text into word spans ONCE, return the word elements ──
-function splitWordsOnce(el) {
-  // guard — never re-split an element that's already split
-  if (el.dataset.split === 'true') {
-    return el.querySelectorAll('.w')
-  }
-  const html = el.innerHTML
-  el.innerHTML = html.replace(/(\S+)/g,
-    '<span style="display:inline-block;overflow:hidden;vertical-align:bottom"><span class="w" style="display:inline-block">$1</span></span>'
-  )
-  el.dataset.split = 'true'
-  return el.querySelectorAll('.w')
+// ── Safe heading reveal ──────────────────────────────────────
+// Per-word inline-block splitting (the previous approach) breaks
+// natural line-wrapping when headings mix <br> with <em> at a
+// different font-style/weight — exactly the "Every" / "pixel."
+// landing on the wrong line bug. Animating the WHOLE heading as
+// one clip-path wipe instead guarantees identical wrapping to
+// plain unstyled text on every screen width, with zero risk.
+function revealHeadingOnce(el) {
+  if (el.dataset.revealed === 'true') return
+  el.dataset.revealed = 'true'
+  gsap.set(el, { clipPath: 'inset(0% 0% 100% 0%)' })
+  ScrollTrigger.create({
+    trigger: el,
+    start: 'top 86%',
+    once: true,
+    onEnter: () => {
+      gsap.to(el, {
+        clipPath: 'inset(0% 0% 0% 0%)',
+        duration: 0.95,
+        ease: 'power3.out'
+      })
+    }
+  })
 }
 
 export function initScrollAnimations() {
@@ -53,14 +64,9 @@ export function initScrollAnimations() {
     )
   })
 
-  // Section titles — word by word, split ONCE on page load (not on every scroll trigger)
+  // Section titles — safe whole-heading clip-path reveal (see note above)
   gsap.utils.toArray('.section-title').forEach(el => {
-    const words = splitWordsOnce(el)
-    gsap.fromTo(words,
-      { y: '110%' },
-      { y: '0%', duration: 0.75, stagger: 0.07, ease: 'power3.out',
-        scrollTrigger: { trigger: el, start: 'top 86%', toggleActions: 'play none none none' } }
-    )
+    revealHeadingOnce(el)
   })
 
   // Stats counter + gold glow
