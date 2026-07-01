@@ -97,84 +97,111 @@
 @keyframes heroFU { from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:none;} }
 
 /* ════════════════════════════════════════════════════
-   MOBILE — photo becomes a BACKGROUND layer behind text
+   MOBILE — full screen magazine cover
+   Photo fills entire hero. Text overlaid on top.
+   Gold rings animate through the image.
    ════════════════════════════════════════════════════ */
 @media (max-width: 900px) {
+
+  /* Hero is a fixed full-screen viewport — magazine cover */
   #hero {
-    grid-template-columns: 1fr;
-    padding-top: 90px;
-    /* Let the section grow to fit its content naturally instead of
-       locking to 100vh — that hard crop was forcing the headline,
-       description and CTA to compress/center inside a fixed box,
-       which is why everything read as cramped against the photo. */
-    min-height: 100vh;
-    height: auto;
     display: block;
     position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 100vh;
     overflow: hidden;
-    padding-bottom: 0;
+    padding: 0;
   }
 
-  /* Photo sits absolute, behind content, bleeding down to the actual
-     bottom of the (now naturally-tall) hero section */
+  /* Photo fills 100% of the hero — edge to edge, top to bottom */
   .hero-photo-wrap {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     padding: 0;
-    z-index: 1;
+    z-index: 2;
     display: block;
-    justify-content: unset;
-    align-items: unset;
-    opacity: 0;
+    opacity: 0; /* animated in by GSAP */
   }
   .hero-photo {
-    position: absolute;
-    right: -4%;
-    bottom: 0;
-    top: auto;
-    width: 84%;
-    max-width: 440px;
-    /* Bleed from roughly where the CTA ends all the way to the
-       section's true bottom edge — no artificial height cap, so
-       there's no dead gap between chin/shoulders and the floor */
-    height: 56%;
-    min-height: 380px;
-    max-height: 620px;
-    object-fit: contain;
-    object-position: bottom right;
-    opacity: 0.55;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    max-width: none;
+    max-height: none;
+    opacity: 0.88;
+    filter: contrast(1.05) brightness(0.85);
   }
 
-  /* Dark gradient overlay so text stays readable on top of photo */
+  /* Vignette — only darkens where text needs to be readable.
+     Top 35%: gentle dark fade for eyebrow + headline readability.
+     Middle: fully transparent — photo shows through completely.
+     Bottom 20%: slight fade to blend into next section. */
   .hero-photo-wrap::after {
     content: '';
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(180deg, rgba(5,5,5,0.7) 0%, rgba(5,5,5,0.25) 32%, rgba(5,5,5,0.5) 60%, var(--void) 100%),
-      linear-gradient(90deg, var(--void) 0%, rgba(5,5,5,0.3) 35%, transparent 70%);
-    z-index: 2;
+      linear-gradient(
+        to bottom,
+        rgba(5,5,5,0.72) 0%,
+        rgba(5,5,5,0.45) 18%,
+        rgba(5,5,5,0.15) 38%,
+        rgba(5,5,5,0.05) 55%,
+        rgba(5,5,5,0.30) 80%,
+        rgba(5,5,5,0.70) 100%
+      );
+    z-index: 3;
+    pointer-events: none;
   }
 
-  /* Content flows naturally top-to-bottom — no forced vertical
-     centering or scroll trap inside a fixed-height box */
+  /* Canvas (particles + rings) sits ABOVE the photo,
+     so rings visibly animate through/over the image */
+  #orb-canvas { z-index: 4; }
+  .hero-grid-lines { z-index: 4; }
+
+  /* Content overlaid on top of photo — spread top to bottom */
   .hero-content {
-    position: relative;
+    position: absolute;
+    inset: 0;
     z-index: 5;
-    padding: 24px var(--container-pad) 70px;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 80px 28px 52px;
+    max-width: 100%;
+    pointer-events: none;
   }
+  .hero-content a,
+  .hero-content button { pointer-events: all; }
 
-  .hero-eyebrow { margin-bottom: 18px; }
-  .hero-name { margin-bottom: 20px; }
-  .hero-desc { margin-bottom: 28px; max-width: 100%; }
-  .name-first, .name-second, .name-last { font-size: clamp(36px,9vw,58px); }
-
+  .hero-eyebrow {
+    margin-bottom: 14px;
+    font-size: 9px;
+    letter-spacing: .38em;
+  }
+  .hero-name { margin-bottom: 18px; }
+  .name-first, .name-second, .name-last {
+    font-size: clamp(34px, 8.5vw, 54px);
+    line-height: 1.05;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.6);
+  }
+  .hero-desc {
+    font-size: 13px;
+    line-height: 1.75;
+    max-width: 100%;
+    margin-bottom: 28px;
+    color: rgba(240,235,224,0.55);
+  }
+  .hero-actions { margin-bottom: 0; }
   .hero-scroll-indicator { display: none; }
 }
 
 @media (max-width: 480px) {
-  .hero-photo { width: 90%; right: -2%; opacity: 0.5; height: 50%; min-height: 340px; }
+  .hero-content { padding: 80px 20px 44px; }
+  .name-first, .name-second, .name-last { font-size: clamp(30px, 8vw, 46px); }
 }

@@ -15,18 +15,15 @@ export function initOrb() {
   function getRingBounds() {
     if (!photoWrap) return null
     if (isMobile()) {
-      // On mobile the photo itself is absolutely positioned and bottom-anchored
-      // inside .hero-photo-wrap (which now grows with content), so measure the
-      // <img> element directly rather than the wrap — otherwise the ring drifts
-      // away from the face whenever the wrap's natural height changes.
-      const imgEl = photoWrap.querySelector('.hero-photo')
-      if (!imgEl) return null
-      const ir = imgEl.getBoundingClientRect()
-      const w = ir.width * 0.78
-      const h = ir.height * 0.5
-      const x = ir.left + (ir.width - w) / 2
-      const y = ir.top + ir.height * 0.06
-      return { x, y, w, h }
+      // Mobile: photo is full-screen cover. Face is in the upper-center area.
+      // Frame a portrait-sized ring around where the head/shoulders sit.
+      const vw = window.innerWidth
+      const vh = window.innerHeight
+      const rw = vw * 0.72        // ring width: 72% of screen width
+      const rh = vh * 0.52        // ring height: 52% of screen height
+      const x  = (vw - rw) / 2   // horizontally centered
+      const y  = vh * 0.08        // starts near the top — frames head area
+      return { x, y, w: rw, h: rh }
     }
     const r = photoWrap.getBoundingClientRect()
     // Desktop — ring frames the photo's visible content area (not full padding box)
