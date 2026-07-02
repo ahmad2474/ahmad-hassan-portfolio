@@ -4,6 +4,7 @@ import { initOrb, initAboutRing }              from './orb.js'
 import { initAnimations, initScrollAnimations } from './animations.js'
 import { initSmoothScroll }                    from './smoothScroll.js'
 import { initReveal }                          from './reveal.js'
+import { initChatbot }                         from './chatbot.js'
 
 function safeInit(name, init) {
   try {
@@ -35,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
   safeInit('scroll animations', initScrollAnimations)
   safeInit('smooth scroll', initSmoothScroll)
   safeInit('reveal', initReveal)
+  safeInit('chatbot', initChatbot)
 
   window.setTimeout(() => {
     window.clearTimeout(loaderFallback)

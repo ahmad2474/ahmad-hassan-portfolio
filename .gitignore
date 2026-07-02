@@ -1,1 +1,3 @@
 .tmp-chrome/
+.vercel
+.env*
