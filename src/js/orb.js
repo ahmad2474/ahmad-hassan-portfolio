@@ -19,8 +19,8 @@ export function initOrb() {
       // Frame a portrait-sized ring around where the head/shoulders sit.
       const vw = window.innerWidth
       const vh = window.innerHeight
-      const rw = vw * 0.72        // ring width: 72% of screen width
-      const rh = vh * 0.52        // ring height: 52% of screen height
+      const rw = vw * 0.90        // ring width: 72% of screen width
+      const rh = vh * 0.72        // ring height: 52% of screen height
       const x  = (vw - rw) / 2   // horizontally centered
       const y  = vh * 0.08        // starts near the top — frames head area
       return { x, y, w: rw, h: rh }
