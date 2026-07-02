@@ -12,6 +12,7 @@
   position: absolute; inset: 0;
   width: 100%; height: 100%;
   z-index: 1; pointer-events: none;
+  opacity: 0;
 }
 .hero-grid-lines {
   position: absolute; inset: 0; z-index: 2;
