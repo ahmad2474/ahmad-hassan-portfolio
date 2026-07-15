@@ -1,27 +1,24 @@
-async function callGemini(payload, retries = 1) {
+async function callGroq(payload, retries = 1) {
   for (let attempt = 0; attempt <= retries; attempt++) {
-    const geminiRes = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-goog-api-key': process.env.GEMINI_API_KEY,
-        },
-        body: JSON.stringify(payload),
-      }
-    );
+    const groqRes = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
+      },
+      body: JSON.stringify(payload),
+    });
 
-    const data = await geminiRes.json();
+    const data = await groqRes.json();
 
     // If it worked, or if it's an error we shouldn't retry (e.g. bad key), return immediately
-    if (data?.candidates?.[0]?.content?.parts?.[0]?.text || data?.error?.status !== 'UNAVAILABLE') {
+    if (data?.choices?.[0]?.message?.content || groqRes.status !== 429) {
       return data;
     }
 
-    // Only retry on UNAVAILABLE (server overload), and only if attempts remain
+    // Only retry on 429 (rate limited), and only if attempts remain
     if (attempt < retries) {
-      console.log(`Gemini overloaded, retrying... (attempt ${attempt + 1})`);
+      console.log(`Groq rate limited, retrying... (attempt ${attempt + 1})`);
       await new Promise((resolve) => setTimeout(resolve, 800)); // brief pause before retry
     } else {
       return data; // out of retries, return the error as-is
@@ -38,13 +35,13 @@ export default async function handler(req, res) {
   // 2. Pull the conversation history sent from the frontend
   const { messages } = req.body;
 
-  // 3. Convert our simple {role, content} format into what Gemini expects
-  const geminiMessages = messages.map((m) => ({
-    role: m.role === 'assistant' ? 'model' : 'user',
-    parts: [{ text: m.content }],
+  // 3. Convert our simple {role, content} format into what Groq (OpenAI-compatible) expects
+  const groqMessages = messages.map((m) => ({
+    role: m.role === 'assistant' ? 'assistant' : 'user',
+    content: m.content,
   }));
 
-  // 4. Background info Gemini uses to answer as "Ahmad's assistant"
+  // 4. Background info Groq uses to answer as "Ahmad's assistant"
   const SYSTEM_PROMPT = `You are a concise, friendly assistant on Ahmad Hassan's portfolio website.
 
 STRICT RULES:
@@ -67,27 +64,25 @@ Contact:
 - WhatsApp: +923026849341`;
 
   try {
-    // 5. Call Gemini with automatic retry on temporary overload
-    const data = await callGemini({
-      contents: geminiMessages,
-      systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
-      generationConfig: {
-        maxOutputTokens: 300,
-        temperature: 0.7,
-      },
+    // 5. Call Groq with automatic retry on temporary rate limiting
+    const data = await callGroq({
+      model: 'llama-3.3-70b-versatile',
+      messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...groqMessages],
+      max_tokens: 300,
+      temperature: 0.7,
     });
 
-    // 6. Defensive check — Gemini can return errors or empty responses
-    const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+    // 6. Defensive check — Groq can return errors or empty responses
+    const reply = data?.choices?.[0]?.message?.content;
     if (!reply) {
-      console.error('Unexpected Gemini response:', JSON.stringify(data));
+      console.error('Unexpected Groq response:', JSON.stringify(data));
       return res.status(500).json({ error: 'No reply from model' });
     }
 
     // 7. Send the reply back to the frontend
     return res.status(200).json({ reply: reply.trim() });
   } catch (err) {
-    console.error('Gemini call failed:', err);
+    console.error('Groq call failed:', err);
     return res.status(500).json({ error: 'Something went wrong' });
   }
 }
