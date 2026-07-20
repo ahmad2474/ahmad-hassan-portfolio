@@ -1,3 +1,5 @@
 .tmp-chrome/
 .vercel
 .env*
+node_modules/
+dist/
