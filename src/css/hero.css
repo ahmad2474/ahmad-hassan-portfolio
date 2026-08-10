@@ -132,7 +132,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center top;
+    object-position: center 34%;
     display: block;
     max-width: none;
     max-height: none;
@@ -170,7 +170,7 @@
   /* Content overlaid on top of photo — spread top to bottom */
   .hero-content {
     position: absolute;
-    top: 10%;
+    top: 34%;
     bottom: auto;
     left: 0;
     right: 0;
@@ -178,7 +178,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 20px 28px 32px;
+    padding: 18px 24px 24px;
     max-width: 100%;
     pointer-events: none;
     }
@@ -208,6 +208,6 @@
 }
 
 @media (max-width: 480px) {
-  .hero-content { padding: 80px 20px 44px; }
-  .name-first, .name-second, .name-last { font-size: clamp(30px, 8vw, 46px); }
+  .hero-content { padding: 48px 18px 30px; top: 34%; }
+  .name-first, .name-second, .name-last { font-size: clamp(28px, 8vw, 42px); }
 }

@@ -70,8 +70,8 @@
   font-family: var(--font-serif);
   font-size: clamp(32px, 8vw, 52px);
   font-weight: 700;
-  color: var(--ivory);
-  opacity: .7;
+  color: #ffffff;
+  opacity: .9;
   transition: opacity .3s, color .3s;
 }
 .mobile-menu a:hover { opacity: 1; color: var(--gold); }
