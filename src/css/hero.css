@@ -170,7 +170,7 @@
   /* Content overlaid on top of photo — spread top to bottom */
   .hero-content {
     position: absolute;
-    top: 34%;
+    top: 42%;
     bottom: auto;
     left: 0;
     right: 0;
@@ -208,6 +208,6 @@
 }
 
 @media (max-width: 480px) {
-  .hero-content { padding: 48px 18px 30px; top: 34%; }
+  .hero-content { padding: 48px 18px 30px; top: 42%; }
   .name-first, .name-second, .name-last { font-size: clamp(28px, 8vw, 42px); }
 }
