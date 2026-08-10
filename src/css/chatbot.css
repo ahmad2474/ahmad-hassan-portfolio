@@ -1,8 +1,9 @@
 /* FLOATING BUTTON */
 .chat-fab {
   position: fixed;
-  bottom: 30px;
+  top: 50%;
   right: 30px;
+  transform: translateY(-50%);
   width: 58px;
   height: 58px;
   border-radius: 50%;
@@ -36,8 +37,8 @@
 /* PANEL */
 .chat-panel {
   position: fixed;
-  bottom: 100px;
-  right: 30px;
+  top: 50%;
+  right: 100px;
   width: 340px;
   max-width: calc(100vw - 40px);
   height: 460px;
@@ -50,13 +51,13 @@
   z-index: 998;
   box-shadow: 0 24px 64px rgba(0,0,0,0.5);
   opacity: 0;
-  transform: translateY(16px) scale(0.97);
+  transform: translateY(-50%) scale(0.97);
   pointer-events: none;
   transition: opacity .25s var(--ease-out), transform .25s var(--ease-out);
 }
 .chat-panel.is-open {
   opacity: 1;
-  transform: none;
+  transform: translateY(-50%) scale(1);
   pointer-events: auto;
 }
 
@@ -151,6 +152,19 @@
 .chat-input-row button:hover { background: var(--gold-lt); }
 
 @media (max-width: 480px) {
-  .chat-panel { right: 16px; bottom: 90px; }
-  .chat-fab { right: 16px; bottom: 20px; }
+  .chat-panel {
+    top: auto;
+    bottom: 90px;
+    right: 16px;
+    transform: translateY(0) scale(0.97);
+  }
+  .chat-panel.is-open {
+    transform: translateY(0) scale(1);
+  }
+  .chat-fab {
+    top: auto;
+    bottom: 20px;
+    right: 16px;
+    transform: none;
+  }
 }
