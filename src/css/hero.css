@@ -54,6 +54,8 @@
   font-style: italic;
   font-weight: 400;
   color: var(--gold);
+  display: inline-block;
+  white-space: nowrap;
 }
 
 .hero-desc {
@@ -168,7 +170,7 @@
   /* Content overlaid on top of photo — spread top to bottom */
   .hero-content {
     position: absolute;
-    top: 14%;
+    top: 10%;
     bottom: auto;
     left: 0;
     right: 0;
@@ -198,7 +200,7 @@
     font-size: 13px;
     line-height: 1.75;
     max-width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     color: rgba(240,235,224,0.55);
   }
   .hero-actions { margin-bottom: 0; }
