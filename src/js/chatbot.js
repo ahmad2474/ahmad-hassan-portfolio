@@ -5,7 +5,7 @@ export function initChatbot() {
   const input = document.getElementById('chatInput')
   const sendBtn = document.getElementById('chatSend')
 
-  if (!fab || !panel) return // safety check, matches your codebase's defensive style
+  if (!fab || !panel || !messagesEl || !input || !sendBtn) return
 
   let conversation = [] // keeps track of the full chat history to send context to the AI
   let isOpen = false
@@ -38,6 +38,12 @@ export function initChatbot() {
 
   function hideTyping() {
     document.getElementById('typingIndicator')?.remove()
+  }
+
+  function setChatEnabled(enabled) {
+    input.disabled = !enabled
+    sendBtn.disabled = !enabled
+    input.placeholder = 'Type a message…'
   }
 
   async function sendMessage() {
@@ -79,4 +85,6 @@ export function initChatbot() {
   input.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') sendMessage()
   })
+
+  setChatEnabled(true)
 }

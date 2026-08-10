@@ -1,3 +1,35 @@
+import nodemailer from 'nodemailer'
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_PASS,
+  },
+})
+
+async function sendContactEmail(contact, messages) {
+  if (!contact || !contact.name || !contact.email || !contact.phone) return
+  const notifyEmail = process.env.CHAT_NOTIFY_EMAIL || process.env.GMAIL_USER
+  const body = [
+    'New chat lead received from portfolio chatbot:',
+    '',
+    `Name: ${contact.name}`,
+    `Email: ${contact.email}`,
+    `Mobile: ${contact.phone}`,
+    '',
+    'Conversation:',
+    ...messages.map((m) => `${m.role.toUpperCase()}: ${m.content}`),
+  ].join('\n')
+
+  await transporter.sendMail({
+    from: process.env.GMAIL_USER,
+    to: notifyEmail,
+    subject: 'New portfolio chatbot contact',
+    text: body,
+  })
+}
+
 async function callGroq(payload, retries = 1) {
   for (let attempt = 0; attempt <= retries; attempt++) {
     const groqRes = await fetch('https://api.groq.com/openai/v1/chat/completions', {
@@ -33,13 +65,22 @@ export default async function handler(req, res) {
   }
 
   // 2. Pull the conversation history sent from the frontend
-  const { messages } = req.body;
+  const { messages, contact } = req.body;
+  const shouldSendEmail = contact && messages?.length === 1
 
   // 3. Convert our simple {role, content} format into what Groq (OpenAI-compatible) expects
   const groqMessages = messages.map((m) => ({
     role: m.role === 'assistant' ? 'assistant' : 'user',
     content: m.content,
-  }));
+  }))
+
+  if (shouldSendEmail) {
+    try {
+      await sendContactEmail(contact, messages)
+    } catch (err) {
+      console.error('Email delivery failed:', err)
+    }
+  }
 
   // 4. Background info Groq uses to answer as "Ahmad's assistant"
   const SYSTEM_PROMPT = `You are a concise, friendly assistant on Ahmad Hassan's portfolio website.
