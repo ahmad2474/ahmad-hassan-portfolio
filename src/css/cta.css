@@ -15,9 +15,9 @@
 .footer-logo { font-family: var(--font-mono); font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: var(--ivory); }
 .footer-logo span { color: var(--gold); }
 .footer-links { display: flex; gap: 28px; }
-.footer-links a { font-family: var(--font-mono); font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .3s; }
+.footer-links a { font-family: var(--font-mono); font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: #ffffff; text-decoration: none; transition: color .3s; }
 .footer-links a:hover { color: var(--gold); }
-.footer-copy { font-family: var(--font-mono); font-size: 9px; color: #333; }
+.footer-copy { font-family: var(--font-mono); font-size: 9px; color: #ffffff; }
 
 .wa-fab { position: fixed; bottom: 32px; right: 32px; z-index: 200; width: 54px; height: 54px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 28px rgba(37,211,102,.32); transition: transform .3s, box-shadow .3s; }
 .wa-fab:hover { transform: scale(1.1) translateY(-2px); box-shadow: 0 14px 44px rgba(37,211,102,.44); }

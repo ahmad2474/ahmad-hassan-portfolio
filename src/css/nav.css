@@ -30,8 +30,9 @@
   font-size: 11px;
   letter-spacing: .22em;
   text-transform: uppercase;
-  color: var(--ivory);
-  opacity: .35;
+  color: #ffffff;
+  font-weight: 700;
+  opacity: 1;
   transition: opacity .3s, color .3s;
 }
 .nav-links a:hover { opacity: 1; color: var(--gold); }
