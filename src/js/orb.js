@@ -43,18 +43,6 @@ export function initOrb() {
     ctx.closePath()
   }
 
-  // 90 drifting gold particles across the whole hero
-  const particles = Array.from({ length: 90 }, () => ({
-    x: Math.random() * 1400,
-    y: Math.random() * 1000,
-    vx: (Math.random() - 0.5) * 0.3,
-    vy: (Math.random() - 0.5) * 0.22,
-    size: Math.random() * 2.3 + 0.5,
-    alpha: Math.random() * 0.5 + 0.1,
-    pulse: Math.random() * Math.PI * 2,
-    pulseSpeed: Math.random() * 0.012 + 0.006,
-  }))
-
   let ring1A = 0, ring2A = Math.PI / 4, t = 0
 
   function draw() {
@@ -62,21 +50,6 @@ export function initOrb() {
     t += 0.016
     ring1A += 0.0045
     ring2A -= 0.0075
-
-    // ── Background drifting particles ──────────────────
-    particles.forEach(p => {
-      p.x += p.vx; p.y += p.vy; p.pulse += p.pulseSpeed
-      if (p.x < 0) p.x = W; if (p.x > W) p.x = 0
-      if (p.y < 0) p.y = H; if (p.y > H) p.y = 0
-      const a = p.alpha * (0.5 + 0.5 * Math.sin(p.pulse))
-      const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 4)
-      g.addColorStop(0, `rgba(201,168,76,${a * 0.7})`)
-      g.addColorStop(1, 'rgba(201,168,76,0)')
-      ctx.beginPath(); ctx.arc(p.x, p.y, p.size * 4, 0, Math.PI * 2)
-      ctx.fillStyle = g; ctx.fill()
-      ctx.beginPath(); ctx.arc(p.x, p.y, p.size * 0.55, 0, Math.PI * 2)
-      ctx.fillStyle = `rgba(226,201,126,${a})`; ctx.fill()
-    })
 
     // ── Square rings around the photo ──────────────────
     const bounds = getRingBounds()
@@ -120,22 +93,6 @@ export function initOrb() {
       drawRect(rx-pad3, ry-pad3, rw+pad3*2, rh+pad3*2, 14)
       ctx.strokeStyle = `rgba(201,168,76,${0.06+pb*0.05})`; ctx.lineWidth = 0.6; ctx.stroke()
 
-      // Particles orbiting the ring specifically
-      const baseR = (rw + rh) / 4
-      for (let i = 0; i < 36; i++) {
-        const angle = (t * 0.25) + (i / 36) * Math.PI * 2
-        const pulse = 0.85 + 0.15 * Math.sin(t * 1.3 + i)
-        const r2 = baseR * pulse + 20
-        const px = cx + Math.cos(angle) * r2
-        const py = cy + Math.sin(angle) * (r2 * rh / rw) * 0.85
-        const a = 0.25 + 0.5 * Math.abs(Math.sin(t + i))
-        const g2 = ctx.createRadialGradient(px,py,0,px,py,3)
-        g2.addColorStop(0, `rgba(201,168,76,${a*0.8})`)
-        g2.addColorStop(1, 'rgba(201,168,76,0)')
-        ctx.beginPath(); ctx.arc(px,py,3,0,Math.PI*2); ctx.fillStyle = g2; ctx.fill()
-        ctx.beginPath(); ctx.arc(px,py,1,0,Math.PI*2)
-        ctx.fillStyle = `rgba(226,201,126,${a})`; ctx.fill()
-      }
     }
 
     requestAnimationFrame(draw)
